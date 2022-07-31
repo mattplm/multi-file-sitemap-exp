@@ -1,3 +1,5 @@
 *~
 .dir-locals.el
 html/
+org/*.index
+org/sitemap.org
