@@ -1,0 +1,29 @@
+#+TITLE: Experiment: A multi file sitemap
+
+In this repo is an attempt at generating a mutli page sitemap for the built in
+publishing functionnality of emacs' org-mode.
+
+This should not be taken too seriously, the implementation is a bit abusive and
+you should probably use better suited tools like [[https://ox-hugo.scripter.co/][ox-hugo]] to generate a proper
+blog. The default publishing facillity is very much targeted towards publishing
+single files one by one and not generating multiple files from a single one.
+
+
+* Building
+
+In order to build the project, you need to have emacs installed, and... That's it really.
+
+This was tested in version 28.1 with org-mode version 9.5.2, I cannot guaranty
+this will work with any other version of emacs or org-mode, feel free to test it
+by yourself if you happen to run a different version combo than mine.
+
+Simply run =make=, the html directory will be created and you should be able to
+view the output in a browser without any issue.
+
+To view the result in a browser, either open the index.html file directly in
+your browser or launch a web server in the html directory.
+
+* License
+
+This work is free software, published under the GPL3+ license, please use it in
+accordance.
