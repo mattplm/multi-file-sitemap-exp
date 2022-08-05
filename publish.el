@@ -107,20 +107,19 @@ top level headlines in the Org file."
   (let ((org-inhibit-startup t)
         ;; Publish to the base directory as org file
         (dir (plist-get plist :base-directory)))
-    (unwind-protect
-        (with-temp-buffer
-          (org-mode)
-          (insert-file-contents filename)
-          (beginning-of-buffer)
-          (when (not (org-at-heading-p)) (org-next-visible-heading nil))
-          (cl-loop for beg-point = (point)
-                   for i upfrom 1
-                   do
-                   (let ((el (org-element-at-point))
-                         (output (concat dir (if (eq i 1) "/index.index" (format "/index_%d.index" i)))))
-                     (org-export-to-file 'org output nil t nil nil plist nil)
-                     (org-forward-heading-same-level 1))
-                   while (not (eq (point) beg-point)))))))
+    (with-temp-buffer
+      (org-mode)
+      (insert-file-contents filename)
+      (beginning-of-buffer)
+      (when (not (org-at-heading-p)) (org-next-visible-heading nil))
+      (cl-loop for beg-point = (point)
+               for i upfrom 1
+               do
+               (let ((el (org-element-at-point))
+                     (output (concat dir (if (eq i 1) "/index.index" (format "/index_%d.index" i)))))
+                 (org-export-to-file 'org output nil t nil nil plist nil)
+                 (org-forward-heading-same-level 1))
+               while (not (eq (point) beg-point))))))
 
 (defun post-process-indexes (plist)
   "In this function, we add the links to the previous and next
@@ -133,8 +132,8 @@ indexes."
       (cl-loop for i from 1 to icount
                for filename = (concat dir (if (eq i 1) "index.index" (format "index_%d.index" i)))
                for next = (if (eq i icount)
-                                nil
-                              (concat dir (format "index_%d.html" (1+ i))))
+                              nil
+                            (concat dir (format "index_%d.html" (1+ i))))
                with prev = nil
                do
                (with-temp-buffer
