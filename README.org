@@ -2,7 +2,7 @@
 
 In this repo is an attempt at generating a mutli page sitemap for the built in
 publishing functionnality of emacs' org-mode. The published website is visible
-at this address: https://www.mattplm.fr/static/multi_file_sitemap_experiment/.
+at this address: https://mattplm.fr/static/multi_file_sitemap_experiment/.
 
 This should not be taken too seriously, the implementation is a bit abusive and
 you should probably use better suited tools like [[https://ox-hugo.scripter.co/][ox-hugo]] to generate a proper
